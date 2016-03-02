@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+  <Appenders>
+   <!--  <File name="file" fileName="weddingpin_java.log">
+      <PatternLayout pattern="%d %p %c{1.} [%t] %m%n"/>
+    </File> -->
+    <Console name="STDOUT" target="SYSTEM_OUT">
+       <PatternLayout pattern="%d %p %c{1.} [%t] %m%n"/>
+    </Console>
+    <!-- <Routing name="Routing">
+	  <Routes pattern="$${map:type}">
+	    <Route>
+	     <RollingFile name="RollingFile" fileName="weddingpin_java.log"
+	                     filePattern="log/$${date:yyyy-MM}/weddingpin_java-%d{MM-dd-yyyy}-%i.log.gz">
+	            <PatternLayout pattern="%d %p %c{1.} [%t] %m%n"/>
+	            <SizeBasedTriggeringPolicy size="5KB"/>
+	            <DefaultRolloverStrategy max="20"/>
+	     </RollingFile>
+	    </Route>
+	  </Routes>
+	</Routing> -->
+	 <RollingFile name="RollingFile" fileName="logs/weddingpin_java.log"
+                 filePattern="logs/$${date:yyyy-MM}/weddingpin_java-%d{MM-dd-yyyy}-%i.log.gz">
+      <PatternLayout>
+        <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+      </PatternLayout>
+      <Policies>
+        <TimeBasedTriggeringPolicy />
+        <SizeBasedTriggeringPolicy size="10MB"/>
+      </Policies>
+    </RollingFile>
+  </Appenders>
+  <Loggers>
+    <Root level="trace">
+    <AppenderRef ref="RollingFile"/>
+<!--       <AppenderRef ref="file" level="DEBUG"/>
+      <AppenderRef ref="STDOUT" level="INFO"/> -->
+    </Root>
+  </Loggers>
+</Configuration>
